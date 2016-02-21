@@ -7,7 +7,7 @@ def main():
     twoValuesList = get_valid_inputs(requestList)
 
 #fixme:need to convert twoValuesList entries from str to int
-    maxValue = max_of_two(twoValuesList)
+    maxValue = max_of_two([int(x) for x in twoValuesList])
 
     display_results(twoValuesList, maxValue)
 
