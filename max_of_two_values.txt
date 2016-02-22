@@ -1,0 +1,28 @@
+4. Maximum of Two Values Design a function named max that accepts two integer
+   values as arguments and returns the value that is the greater of the two. 
+   For example, if 7 and 12 are passed as arguments to the function, the function
+   should return 12. Use the function in a program that prompts the user to enter
+   two integer values. The program should display the value that is the greater
+   of the two.
+   
+Pseudocode
+----------
+Module main()
+    // Local variables
+    Declare List twoValuesList = []
+    Declare List requestList = [['integer', 'first whole number to compare'],
+                               ['integer', 'second whole number to compare']]
+    Declare String maxValue = ''
+    
+    // Display intro to user.
+    Call fluffy_intro()
+    
+    // Assigns two integers based on user input and validation.
+    twoValuesList = get_valid_inputs(requestList)
+    
+    // Uses a list comprehension to convert user inputs from strings to integers
+    maxValue = max_of_two([int(x) for x in twoValuesList])
+    
+    // Display 
+    display_results(twoValuesList, maxValue)
+End Module
