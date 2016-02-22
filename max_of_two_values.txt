@@ -41,7 +41,7 @@ End Module
 //   If invalid, it will alert the user and request the correct input.
 // The parameter is a nested List of ordered pair Lists.
 //   First value is the validation test and second is the user prompt.
-Module get_valid_inputs(List requestsList)
+Function get_valid_inputs(List requestsList)
 
     // local List to hold user inputs for return to calling module
     Declare List userInputs
@@ -69,49 +69,49 @@ Module get_valid_inputs(List requestsList)
     End For
 
     Return userInputs
-End Module
+End Function
 
 
 // prompt_user_for_item accepts a string as an argument and returns the input
 // to the calling module.
-Module prompt_user_for_item(String promptTerm)
+Function prompt_user_for_item(String promptTerm)
     Display "Please enter your,", promptTerm, "."
     // The user input is returned in an anonymous variable
     Return Input
-End Module
+End Function
 
 
 // test_value uses the testCondition to select the proper test.
 // It returns True or False to the calling Module.
-Module test_value(testCondition, testItem)
+Function test_value(testCondition, testItem)
     // The If-Then-Else structure functions as a Switch for test selection.
     If testCondition == "integer" Then
         # Try will try to convert testItem to an integer. If it succeeds
         #  True is returned to the calling module.  If int(testItem)
         #  creates an error, except will stop the error from writing to
         #  the screen and returns False.
-        Try:
+        Try
             int(testItem)
             Return True
         Except
             Return False
     End If
-End Module
+End Function
 
 
 // display_results is passed values used in print statements to display
 //  the results of the program to the user.
-def display_results(twoValuesList, maxValue):
+Module display_results(twoValuesList, maxValue)
     // This shows the value comparison and the results.  Output will vary
     //  depending on the three possible outcomes.
-    If maxValue == 'equal':
+    If maxValue == 'equal' Then
         Display "You think you're so funny don't you?"
         Display "You entered the same number twice!"
         Display twoValuesList[0], "==", twoValuesList[1]
-    elif maxValue == '0':
+    Else If maxValue == '0' Then
         Display "Your first value is greater than your second value."
         Display twoValuesList[0], ">" twoValuesList[1]
-    else:
+    Else
         Display "Your second value is greater than your first value.")
         Display twoValuesList[0], "<", twoValuesList[1]
     Return None
