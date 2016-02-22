@@ -53,8 +53,7 @@ def get_valid_inputs(requestsList):
 
 
 # prompt_user_for_item is passed a String to print to screen as part of a user
-#   prompt.  Then it converts the user input into a real number and returns
-#   it to the calling module.
+#   prompt.  Then returns it to the calling module.
 def prompt_user_for_input(promptTerm):
     # promptTerm is a local variable to hold the value passed from the
     #   calling module.
@@ -67,7 +66,10 @@ def prompt_user_for_input(promptTerm):
 def test_value(testCondition, testItem):
     # The If-Then-Else structure functions as a Switch for test selection.
     if testCondition == 'integer':
-        # Is testItem an Integer?
+        # Try will try to convert testItem to an integer. If it succeeds
+        #  True is returned to the calling module.  If int(testItem)
+        #  creates an error, except will stop the error from writing to
+        #  the screen and returns False.
         try:
            int(testItem)
            return True

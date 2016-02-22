@@ -20,9 +20,99 @@ Module main()
     // Assigns two integers based on user input and validation.
     twoValuesList = get_valid_inputs(requestList)
     
-    // Uses a list comprehension to convert user inputs from strings to integers
+    // Uses a list comprehension to convert user inputs from strings to
+    //  integers.  Then assigns the evaluation results to a variable.
     maxValue = max_of_two([int(x) for x in twoValuesList])
     
-    // Display 
+    // Display comparison results to the user.
     display_results(twoValuesList, maxValue)
+End Module
+
+
+// Displays an introduction to the program and describes what it does.
+Module fluffy_intro()
+    Display 'Welcome to the Max of Two Values program.'
+    Display 'This program determines which of two integers has the higher'
+    Display 'value. It then displays the results for your viewing pleasure.'
+End Module
+
+
+// get_valid_inputs requests input from the user then tests the input.
+//   If invalid, it will alert the user and request the correct input.
+// The parameter is a nested List of ordered pair Lists.
+//   First value is the validation test and second is the user prompt.
+Module get_valid_inputs(List requestsList)
+
+    // local List to hold user inputs for return to calling module
+    Declare List userInputs
+
+    // Loop through each entry in requestList assigning each List pair
+    //  to request.
+    For request In requestsList Do
+        // Temporary holding variable for testing user input validity
+        Declare untestedInput
+
+        // First user prompt before testing loop
+        Set untestedInput = prompt_user_for_input(request[1])
+
+        // If test_value returns True, Not converts it to False and the While
+        //  Loop will not execute.
+        // If test_value returns False, the While executes and the user is
+        //  prompted to enter a valid value.
+        While (Not test_value(request[0], untestedInput))
+            Display untestedInput "is not a valid value."
+            Set untestedInput = (prompt_user_for_input(request[1]))
+        End While
+
+        // The user input tested valid and is appended to the userInputs List.
+        Append untestedInput To userInputs
+    End For
+
+    Return userInputs
+End Module
+
+
+// prompt_user_for_item accepts a string as an argument and returns the input
+// to the calling module.
+Module prompt_user_for_item(String promptTerm)
+    Display "Please enter your,", promptTerm, "."
+    // The user input is returned in an anonymous variable
+    Return Input
+End Module
+
+
+// test_value uses the testCondition to select the proper test.
+// It returns True or False to the calling Module.
+Module test_value(testCondition, testItem)
+    // The If-Then-Else structure functions as a Switch for test selection.
+    If testCondition == "integer" Then
+        # Try will try to convert testItem to an integer. If it succeeds
+        #  True is returned to the calling module.  If int(testItem)
+        #  creates an error, except will stop the error from writing to
+        #  the screen and returns False.
+        Try:
+            int(testItem)
+            Return True
+        Except
+            Return False
+    End If
+End Module
+
+
+// display_results is passed values used in print statements to display
+//  the results of the program to the user.
+def display_results(twoValuesList, maxValue):
+    // This shows the value comparison and the results.  Output will vary
+    //  depending on the three possible outcomes.
+    If maxValue == 'equal':
+        Display "You think you're so funny don't you?"
+        Display "You entered the same number twice!"
+        Display twoValuesList[0], "==", twoValuesList[1]
+    elif maxValue == '0':
+        Display "Your first value is greater than your second value."
+        Display twoValuesList[0], ">" twoValuesList[1]
+    else:
+        Display "Your second value is greater than your first value.")
+        Display twoValuesList[0], "<", twoValuesList[1]
+    Return None
 End Module
